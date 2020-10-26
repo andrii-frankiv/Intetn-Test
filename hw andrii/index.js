@@ -1,4 +1,4 @@
-const time =  new Date().getHours() + ":" +  new Date().getMinutes();
+const date = new Date().toLocaleDateString();
 const arrOfBooks = [];
 class BookList {
 	constructor(read,arrOfBooks){
@@ -161,11 +161,17 @@ class Book extends BookList{
   
       return books;
     }
-  
+    
     static addBook(book) {
-      const books = Store.getBooks();
+    const books = Store.getBooks();
+    if(book.isfinished == "Is finished"){
       books.push(book);
       localStorage.setItem('books', JSON.stringify(books));
+    }else{
+      books.unshift(book);
+      localStorage.setItem('books', JSON.stringify(books));
+    }
+      
     }
   
     static removeBook(genre) {
@@ -174,11 +180,14 @@ class Book extends BookList{
       books.forEach((book, index) => {
         if(book.genre === genre) {
           books.splice(index, 1);
+          Store.removeItem('books');
         }
       });
   
       localStorage.setItem('books', JSON.stringify(books));
+      
     }
+
   }
   document.addEventListener('DOMContentLoaded', UI.displayBooks);
 
@@ -207,26 +216,24 @@ class Book extends BookList{
     }
     function isRead(){
       if(document.getElementById("isfinished").checked){
-        return time;
+        return date;
       }else{
         return "Not read yet!"
       }
     }
+   
     if(title === '' || author === '' || genre === '' || id === '' ||  readDate === '') {
       UI.showAlert('Please fill in all fields', 'danger');
     } else {
       const book = new Book(id, author, genre, read, readDate, title, isfinished);
   
       UI.addBookToList(book);
-  
       Store.addBook(book);
-  
       UI.showAlert('Book Added', 'success');
   
       UI.clearFields();
     }
   });
-  
   // Event: Remove a Book
   document.querySelector('#book-list').addEventListener('click', (e) => {
     UI.deleteBook(e.target);
