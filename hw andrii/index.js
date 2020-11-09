@@ -240,3 +240,26 @@ class Book extends BookList{
     Store.removeBook(e.target.parentElement.previousElementSibling);
     UI.showAlert('Book Removed', 'success');
   });
+
+module.exports = {
+  BookList,
+  Book,
+  setCurrentReadBook,
+  addBook,
+  setReadedBook,
+  findUnreadBooks,
+  setFinishedBook,
+  setTheNextBook,
+  checkForCurrentBook,
+  setCurrentReadBook,
+  books,
+  unreadBooks,
+  lastReadedBook,
+  showNextBook,
+  checkForBook,
+  Store,
+  UI,
+  check,
+  checkRead,
+  isRead
+}
