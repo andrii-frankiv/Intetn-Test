@@ -1,0 +1,196 @@
+~/Development/ISG_Labs/UT(master*) » jest ReadingList.spec.js                andriifrankiv@MacBook-Pro
+ FAIL  ./ReadingList.spec.js
+  The Reading List
+    Book class
+      should return object with properties title, genre, author
+        ✓ should own property title (2 ms)
+        ✓ should own property genre
+        ✓ should own property author (1 ms)
+      should create Book instance with passed properties
+        ✕ should has property title equals to Колобок (3 ms)
+        ✕ should has property genre equals to Окультизм (8 ms)
+        ✕ should has property author equals to невідомий
+    BookList class
+      BookList should be able to add books and mark them as "read"
+        ✓ should have addBook method  (1 ms)
+        ✕ should have finishCurrentBook method  (1 ms)
+      Add book to the list
+        ✕ should add book to the list
+        ✓ should add book to the end of list (1 ms)
+        ✓ should be unread
+        ✕ should have have prop readDate set (1 ms)
+      Finish reading current book
+        ✕ should mark book as read
+        ✕ should set read date (1 ms)
+
+  ● The Reading List › Book class › should create Book instance with passed properties › should has property title equals to Колобок
+
+    expect(received).toHaveProperty(path, value)
+
+    Expected path: "title"
+
+    Expected value: "Колобок"
+    Received value: undefined
+
+      125 |       for (const prop of keys) {
+      126 |         it('should has property ' + prop + ' equals to ' + values[prop], () => {
+    > 127 |           expect(book).toHaveProperty(prop, values[prop]);
+          |                        ^
+      128 |         })
+      129 |       }
+      130 |     });
+
+      at Object.<anonymous> (ReadingList.spec.js:127:24)
+
+  ● The Reading List › Book class › should create Book instance with passed properties › should has property genre equals to Окультизм
+
+    expect(received).toHaveProperty(path, value)
+
+    Expected path: "genre"
+
+    Expected value: "Окультизм"
+    Received value: "невідомий"
+
+      125 |       for (const prop of keys) {
+      126 |         it('should has property ' + prop + ' equals to ' + values[prop], () => {
+    > 127 |           expect(book).toHaveProperty(prop, values[prop]);
+          |                        ^
+      128 |         })
+      129 |       }
+      130 |     });
+
+      at Object.<anonymous> (ReadingList.spec.js:127:24)
+
+  ● The Reading List › Book class › should create Book instance with passed properties › should has property author equals to невідомий
+
+    expect(received).toHaveProperty(path, value)
+
+    Expected path: "author"
+
+    Expected value: "невідомий"
+    Received value: "Окультизм"
+
+      125 |       for (const prop of keys) {
+      126 |         it('should has property ' + prop + ' equals to ' + values[prop], () => {
+    > 127 |           expect(book).toHaveProperty(prop, values[prop]);
+          |                        ^
+      128 |         })
+      129 |       }
+      130 |     });
+
+      at Object.<anonymous> (ReadingList.spec.js:127:24)
+
+  ● The Reading List › BookList class › BookList should be able to add books and mark them as "read"  › should have finishCurrentBook method
+
+    expect(received).toHaveProperty(path)
+
+    Expected path: "finishCurrentBook"
+    Received path: []
+
+    Received value: {"arrOfBooks": undefined, "currentBook": 0, "firstUnrededBook": null, "lastBook": 0, "nextBook": null, "notRead": 0, "read": undefined}
+
+      138 |       for (const m of keys) {
+      139 |         it(`should have ${m} method `, () => {
+    > 140 |           expect(bookList).toHaveProperty(m);
+          |                            ^
+      141 |           expect(typeof bookList[m]).toEqual('function');
+      142 |         })
+      143 |       }
+
+      at Object.<anonymous> (ReadingList.spec.js:140:28)
+
+  ● The Reading List › BookList class › Add book to the list › should add book to the list
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 1
+    Received: 2
+
+      155 |
+      156 |       it('should add book to the list', () => {
+    > 157 |         expect(arrOfBooks.length).toEqual(prevLength + 1);
+          |                                   ^
+      158 |       });
+      159 |
+      160 |       it('should add book to the end of list', () => {
+
+      at Object.<anonymous> (ReadingList.spec.js:157:35)
+
+  ● The Reading List › BookList class › Add book to the list › should have have prop readDate set
+
+    expect(received).not.toHaveProperty(path)
+
+    Expected path: not "readDate"
+
+    Received value: undefined
+
+      166 |       });
+      167 |       it(`should have have prop ${READ_DATE} set`, () => {
+    > 168 |         expect(book).not.toHaveProperty(READ_DATE);
+          |                          ^
+      169 |       });
+      170 |     });
+      171 |
+
+      at Object.<anonymous> (ReadingList.spec.js:168:26)
+
+  ● The Reading List › BookList class › Finish reading current book › should mark book as read
+
+    TypeError: bookList.finishCurrentBook is not a function
+
+      180 |       it('should mark book as read', () => {
+      181 |         // arrOfBooks.forEach(() => bookList.finishCurrentBook());
+    > 182 |         bookList.finishCurrentBook();
+          |                  ^
+      183 |         expect(book[READ]).toEqual(true);
+      184 |       });
+      185 |
+
+      at Object.<anonymous> (ReadingList.spec.js:182:18)
+
+  ● The Reading List › BookList class › Finish reading current book › should set read date
+
+    expect(received).toBeInstanceOf(expected)
+
+    Expected constructor: Date
+
+    Received value has no prototype
+    Received value: undefined
+
+      185 |
+      186 |       it('should set read date', () => {
+    > 187 |         expect(book[READ_DATE]).toBeInstanceOf(Date);
+          |                                 ^
+      188 |       });
+      189 |
+      190 |       afterAll(() => {
+
+      at Object.<anonymous> (ReadingList.spec.js:187:33)
+
+  
+Test Suites: 1 failed, 1 total
+Tests:       8 failed, 6 passed, 14 total
+Snapshots:   0 total
+Time:        1.093 s, estimated 2 s
+Ran all test suites matching /ReadingList.spec.js/i.
+
+
+
+
+console.group
+      BOOKLIST AFTER LAST TEST
+
+      at Object.<anonymous> (ReadingList.spec.js:191:17)
+
+  console.log
+      BookList {
+      read: undefined,
+      notRead: 0,
+      nextBook: null,
+      currentBook: 0,
+      lastBook: 0,
+      arrOfBooks: undefined,
+      firstUnrededBook: null
+    }
+
+      at Object.<anonymous> (ReadingList.spec.js:192:17)
